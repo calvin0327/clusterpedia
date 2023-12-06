@@ -49,7 +49,17 @@ type Config struct {
 	Params map[string]string `yaml:"params"`
 
 	Log *LogConfig `yaml:"log"`
+
+	DivisionPolicy DivisionPolicy `yaml:"divisionPolicy"`
 }
+
+type DivisionPolicy string
+
+const (
+	None         DivisionPolicy = "None"
+	GroupVersion DivisionPolicy = "GroupVersion"
+	Custom       DivisionPolicy = "Custom"
+)
 
 type LogConfig struct {
 	Stdout                    bool               `yaml:"stdout"`

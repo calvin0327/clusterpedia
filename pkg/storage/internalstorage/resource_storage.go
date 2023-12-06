@@ -82,6 +82,7 @@ func (s *ResourceStorage) Create(ctx context.Context, cluster string, obj runtim
 		resource.DeletedAt = sql.NullTime{Time: deletedAt.Time, Valid: true}
 	}
 
+	s.db.WithContext(ctx).Create()
 	result := s.db.WithContext(ctx).Create(&resource)
 	return InterpretResourceDBError(cluster, metaobj.GetName(), result.Error)
 }
